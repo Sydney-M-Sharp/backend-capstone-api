@@ -6,8 +6,9 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from rest_framework.decorators import action
-from .models import Trip, User
-from .serializers import TripSerializer
+from django.contrib.auth.models import User
+from tripapi.models import Trip
+from tripapi.serializers import TripSerializer
 
 
 
