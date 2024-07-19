@@ -1,0 +1,22 @@
+[
+    {
+        "model": "tripapi.trip",
+        "pk": 1,
+        "fields": {
+            "location": "Chicago",
+            "start_date": "2024-08-01",
+            "end_date": "2024-08-10",
+            "user": 1
+        }
+    },
+    {
+        "model": "tripapi.trip",
+        "pk": 2,
+        "fields": {
+            "location": "New York",
+            "start_date": "2024-09-01",
+            "end_date": "2024-09-05",
+            "user": 2
+        }
+    }
+]

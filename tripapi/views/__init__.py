@@ -1,0 +1,1 @@
+from .trip_view import TripView
