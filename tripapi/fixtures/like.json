@@ -1,0 +1,18 @@
+[
+    {
+        "model": "tripapi.like",
+        "pk": 1,
+        "fields": {
+            "event": 2,
+            "user": 4
+        }
+    },
+    {
+        "model": "tripapi.like",
+        "pk": 2,
+        "fields": {
+            "event": 1,
+            "user": 3
+        }
+    }
+]
