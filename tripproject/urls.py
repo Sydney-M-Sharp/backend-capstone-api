@@ -6,6 +6,7 @@ from tripapi.views import *
 router = routers.DefaultRouter(trailing_slash=False)
 
 router.register(r'trips', TripView, 'trip')
+router.register(r'invites', InviteView, 'invite')
 
 urlpatterns = [
     path('', include(router.urls)),
