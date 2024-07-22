@@ -8,6 +8,7 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'trips', TripView, 'trip')
 router.register(r'invites', InviteView, 'invite')
 router.register(r'events', EventView, 'event')
+router.register(r'likes', LikeView, 'like')
 
 urlpatterns = [
     path('', include(router.urls)),
