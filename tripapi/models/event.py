@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .trip import Trip
 
 class Event(models.Model):
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
     title = models.CharField(max_length=100)
     location = models.CharField(max_length=255)
     date = models.DateField()
