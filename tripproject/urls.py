@@ -9,6 +9,8 @@ router.register(r'trips', TripView, 'trip')
 router.register(r'invites', InviteView, 'invite')
 router.register(r'events', EventView, 'event')
 router.register(r'likes', LikeView, 'like')
+router.register(r'users', UserView, 'user')
+
 
 urlpatterns = [
     path('', include(router.urls)),
