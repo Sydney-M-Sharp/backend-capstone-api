@@ -4,13 +4,6 @@ from tripapi.serializers import TripSerializer
 from django.contrib.auth.models import User
 
 
-
-# class EventSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Event
-#         fields =  "__all__"
-
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -24,17 +17,18 @@ class InviteSerializer(serializers.ModelSerializer):
         model = Invite
         fields = ('id', 'trip', 'user',)
 
+
 class EventSerializer(serializers.ModelSerializer):
     trip = TripSerializer(many=False)
     user = UserSerializer(many=False)
     class Meta:
         model = Event
-        fields =  ('id', 'title', 'location', 'date', 'time','description','link','trip',"user")
+        fields =  ('id', 'title', 'location', 'date', 'time','description','link','trip','user')
 
-# class LikeSerializer(serializers.ModelSerializer):
-#     user = UserSerializer(many=False)
-#     event = EventSerializer(many=False)
+class LikeSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False)
+    event = EventSerializer(many=False)
     
-#     class Meta:
-#         model = Like
-#         fields = ('event', 'user')
+    class Meta:
+        model = Like
+        fields = ('id', 'event', 'user',)
