@@ -1,21 +1,21 @@
 from rest_framework import serializers
 from tripapi.models import Event, Invite, Like
-from tripapi.serializers import TripSerializer
-from django.contrib.auth.models import User
+from tripapi.serializers import TripSerializer, UserSerializer, InviteSerializer
+# from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ( 'first_name', 'last_name' )
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ( 'first_name', 'last_name' )
 
 
-class InviteSerializer(serializers.ModelSerializer):
-    trip = TripSerializer(many=False)
-    user = UserSerializer(many=False)
-    class Meta:
-        model = Invite
-        fields = ('id', 'trip', 'user',)
+# class InviteSerializer(serializers.ModelSerializer):
+#     trip = TripSerializer(many=False)
+#     user = UserSerializer(many=False)
+#     class Meta:
+#         model = Invite
+#         fields = ('id', 'trip', 'user',)
 
 
 class EventSerializer(serializers.ModelSerializer):
