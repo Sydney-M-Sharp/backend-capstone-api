@@ -11,7 +11,16 @@ class EventView(ViewSet):
 
     def list(self, request):
         """Handle GET requests to list Events"""
-        events = Event.objects.all()
+        # Get the trip PK from the request query parameters
+        trip_pk = request.query_params.get('trip', None)
+
+        if trip_pk is not None:
+            # Filter events based on the trip PK
+            events = Event.objects.filter(trip__pk=trip_pk)
+        else:
+            # If no trip PK is provided, return all events
+            events = Event.objects.all()
+
         serializer = EventSerializer(events, many=True, context={'request': request})
         return Response(serializer.data)
     
