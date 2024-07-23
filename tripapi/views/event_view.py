@@ -23,6 +23,12 @@ class EventView(ViewSet):
 
         serializer = EventSerializer(events, many=True, context={'request': request})
         return Response(serializer.data)
+
+    # def retrieve(self, request, pk=None):
+    #     """Handle GET requests for a single Event"""
+    #     trip = get_object_or_404(Trip, pk=pk)
+    #     serializer = TripSerializer(trip, context={'request': request})
+    #     return Response(serializer.data)
     
     def create(self, request):
         """Handle POST requests to create a new Event"""
@@ -45,21 +51,24 @@ class EventView(ViewSet):
 
         except:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+    def update(self, request, pk=None):
+        """Handle PUT requests to update an Event"""
+        
+        event = Event.objects.get(pk=pk)
+        event.user = request.auth.user
+        event.title = request.data['title']
+        event.location = request.data['location']
+        event.date = request.data['date']
+        event.time = request.data['time']
+        event.description = request.data['description']
+        event.link = request.data['link']
+        event.trip = Trip.objects.get(pk=request.data["trip"])
+        event.save()
+        
+        serializer = EventSerializer(event, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-    # def retrieve(self, request, pk=None):
-    #     """Handle GET requests for a single Event"""
-    #     trip = get_object_or_404(Trip, pk=pk)
-    #     serializer = TripSerializer(trip, context={'request': request})
-    #     return Response(serializer.data)
-
-    # def update(self, request, pk=None):
-    #     """Handle PUT requests to update a Event"""
-    #     trip = get_object_or_404(Trip, pk=pk)
-    #     serializer = TripSerializer(trip, data=request.data, context={'request': request})
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # def destroy(self, request, pk=None):
     #     """Handle DELETE requests to delete a Event"""
