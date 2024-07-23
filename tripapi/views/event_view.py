@@ -24,12 +24,17 @@ class EventView(ViewSet):
         serializer = EventSerializer(events, many=True, context={'request': request})
         return Response(serializer.data)
 
-    # def retrieve(self, request, pk=None):
-    #     """Handle GET requests for a single Event"""
-    #     trip = get_object_or_404(Trip, pk=pk)
-    #     serializer = TripSerializer(trip, context={'request': request})
-    #     return Response(serializer.data)
-    
+    def retrieve(self, request, pk=None):
+        """Handle GET requests for a single Event"""
+        try:
+            events = Event.objects.get(pk=pk)
+            serializer = EventSerializer(events, context={'request': request})
+
+            return Response(serializer.data)
+        
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
     def create(self, request):
         """Handle POST requests to create a new Event"""
 
