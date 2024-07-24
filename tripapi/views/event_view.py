@@ -98,6 +98,15 @@ class EventView(ViewSet):
 
     def destroy(self, request, pk=None):
         """Handle DELETE requests to delete a Event"""
-        trip = get_object_or_404(Trip, pk=pk)
-        trip.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        try:
+            product = Event.objects.get(pk=pk)
+            product.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except Event.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
