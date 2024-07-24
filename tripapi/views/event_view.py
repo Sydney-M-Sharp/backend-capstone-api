@@ -26,6 +26,27 @@ class EventView(ViewSet):
 
     def retrieve(self, request, pk=None):
         """Handle GET requests for a single Event"""
+
+        """" Event retrieve Response:
+        {
+            "id": 3,
+            "title": "dinner",
+            "location": "that food place",
+            "date": "2024-08-04",
+            "time": "10:00:00",
+            "description": "it proly gonna be fun",
+            "link": "https://deeslounge.com/",
+            "trip": {
+                "id": 1,
+                "location": "Chicago"
+            },
+            "user": {
+                "id": 1,
+                "first_name": "Sydney",
+                "last_name": "Sharp"
+            }
+        }
+        """
         try:
             events = Event.objects.get(pk=pk)
             serializer = EventSerializer(events, context={'request': request})
@@ -75,8 +96,8 @@ class EventView(ViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-    # def destroy(self, request, pk=None):
-    #     """Handle DELETE requests to delete a Event"""
-    #     trip = get_object_or_404(Trip, pk=pk)
-    #     trip.delete()
-    #     return Response(status=status.HTTP_204_NO_CONTENT)
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests to delete a Event"""
+        trip = get_object_or_404(Trip, pk=pk)
+        trip.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
