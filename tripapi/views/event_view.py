@@ -11,9 +11,35 @@ class EventView(ViewSet):
 
     def list(self, request):
         """Handle GET requests to list Events"""
+        '''http://localhost:8000/events?trip_id=2'''
+        ''' Event list Response:
+        [
+            {
+                "id": 9,
+                "title": "dinner again",
+                "location": "that food place",
+                "date": "2024-08-04",
+                "time": "10:00:00",
+                "description": "it proly gonna be fun",
+                "link": "https://deeslounge.com/",
+                "trip": {
+                    "id": 2,
+                    "location": "New York",
+                    "start_date": "2024-09-01",
+                    "end_date": "2024-09-05"
+                },
+                "user": {
+                    "id": 1,
+                    "first_name": "Sydney",
+                    "last_name": "Sharp"
+                }
+            }
+        ]
+        '''
+        
         # Get the trip PK from the request query parameters
-        trip_pk = request.query_params.get('trip', None)
-
+        trip_pk = request.query_params.get('trip_id', None)  # 'trip_id' to match the query parameter
+        
         if trip_pk is not None:
             # Filter events based on the trip PK
             events = Event.objects.filter(trip__pk=trip_pk)
@@ -23,9 +49,6 @@ class EventView(ViewSet):
 
         serializer = EventSerializer(events, many=True, context={'request': request})
         return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        """Handle GET requests for a single Event"""
 
         """" Event retrieve Response:
         {
