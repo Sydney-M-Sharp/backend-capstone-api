@@ -13,12 +13,6 @@ class Event(models.Model):
     link = models.URLField()
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name='events')
     
-#     def formatted_time(self):
-#         return self.time.strftime("%I:%M %p")  # Format time as am/pm
-
-# # Usage in view or template:
-# event = Event.objects.get(pk=1)
-# print(event.formatted_time())  # Output: 11:00 AM
 
     def __str__(self):
         return f"Event at {self.location} on {self.date} at {self.time}"

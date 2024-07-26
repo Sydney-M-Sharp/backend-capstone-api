@@ -78,6 +78,16 @@ class EventView(ViewSet):
         
         except Exception as ex:
             return HttpResponseServerError(ex)
+    def retrieve(self, request, pk=None):
+        """Handle GET requests to retrieve a single Event"""
+        try:
+            event = Event.objects.get(pk=pk)
+            serializer = EventSerializer(event, context={'request': request})
+
+            return Response(serializer.data)
+
+        except Exception as ex:
+            return HttpResponseServerError(ex)
 
     def create(self, request):
         """Handle POST requests to create a new Event"""
@@ -112,7 +122,7 @@ class EventView(ViewSet):
         event.time = request.data['time']
         event.description = request.data['description']
         event.link = request.data['link']
-        event.trip = Trip.objects.get(pk=request.data["trip"])
+        # event.trip = Trip.objects.get(pk=request.data["trip"])
         event.save()
         
         serializer = EventSerializer(event, context={'request': request})
