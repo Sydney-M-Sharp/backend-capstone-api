@@ -10,6 +10,12 @@ class InviteView(ViewSet):
 
     def list(self, request):
         """Handle GET requests to list Invites"""
-        invites = Invite.objects.all()
+        user_id = request.query_params.get('user_id', None)
+        
+        if user_id is not None:
+            invites = Invite.objects.filter(user__id=user_id)
+        else:
+            invites = Invite.objects.all()
+        
         serializer = InviteSerializer(invites, many=True, context={'request': request})
         return Response(serializer.data)
