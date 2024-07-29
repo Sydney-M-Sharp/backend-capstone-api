@@ -1,16 +1,8 @@
-"""View module for handling requests about Trips"""
-import datetime
-from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
-from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import action
-from django.contrib.auth.models import User
-from tripapi.models import Trip
+from tripapi.models import Trip, Invite
 from tripapi.serializers import TripSerializer
-
-
 
 class TripView(ViewSet):
     """View for handling requests about trips"""
@@ -22,19 +14,23 @@ class TripView(ViewSet):
         return Response(serializer.data)
 
     def create(self, request):
-        """Handle POST requests to create a new Event"""
+        """Handle POST requests to create a new Trip with invitations"""
 
         # Create a Trip object and assign it property values
-        event = Trip()
-        event.user = request.auth.user
-        event.location = request.data['location']
-        event.start_date = request.data['start_date']
-        event.end_date = request.data['end_date']
-        event.save()
+        trip = Trip()
+        trip.user = request.auth.user
+        trip.location = request.data['location']
+        trip.start_date = request.data['start_date']
+        trip.end_date = request.data['end_date']
+        trip.save()
+
+        # Handle invites
+        invited_users = request.data.get('invited_users', [])
+        for user_id in invited_users:
+            Invite.objects.create(trip=trip, user_id=user_id)
 
         try:
-            serializer = TripSerializer(event, context={'request': request})
+            serializer = TripSerializer(trip, context={'request': request})
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        except:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
