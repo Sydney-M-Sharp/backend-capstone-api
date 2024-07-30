@@ -18,5 +18,35 @@
             "end_date": "2024-09-05",
             "user": 2
         }
+    },
+    {
+        "model": "tripapi.trip",
+        "pk": 3,
+        "fields": {
+            "location": "New York",
+            "start_date": "2024-10-01",
+            "end_date": "2024-10-05",
+            "user": 1
+        }
+    },
+    {
+        "model": "tripapi.trip",
+        "pk": 4,
+        "fields": {
+            "location": "Atlanta",
+            "start_date": "2024-08-03",
+            "end_date": "2024-08-10",
+            "user": 1
+        }
+    },
+    {
+        "model": "tripapi.trip",
+        "pk": 5,
+        "fields": {
+            "location": "New Mexico",
+            "start_date": "2024-10-01",
+            "end_date": "2024-10-10",
+            "user": 2
+        }
     }
 ]

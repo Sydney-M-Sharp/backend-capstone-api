@@ -26,5 +26,19 @@
             "link": "https://deeslounge.com/",
             "trip": 1
         }
+    },
+    {
+        "model": "tripapi.event",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "title": "Brunch",
+            "location": "that other bar",
+            "date": "2024-08-07",
+            "time": "10:00:00",
+            "description": "it proly gonna be fun",
+            "link": "https://deeslounge.com/",
+            "trip": 1
+        }
     }
 ]
