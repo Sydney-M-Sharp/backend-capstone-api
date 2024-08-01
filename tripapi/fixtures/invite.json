@@ -31,4 +31,22 @@
             "user": 3
         }
     }
+    ,
+    {
+        "model": "tripapi.invite",
+        "pk": 5,
+        "fields": {
+            "trip": 4,
+            "user": 1
+        }
+    }
+    ,
+    {
+        "model": "tripapi.invite",
+        "pk": 6,
+        "fields": {
+            "trip": 2,
+            "user": 1
+        }
+    }
 ]

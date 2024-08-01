@@ -17,7 +17,7 @@
         "model": "tripapi.event",
         "pk": 2,
         "fields": {
-            "user": 1,
+            "user": 3,
             "title": "Brunch",
             "location": "that other bar",
             "date": "2024-08-07",
@@ -38,6 +38,20 @@
             "time": "10:00:00",
             "description": "it proly gonna be fun",
             "link": "https://deeslounge.com/",
+            "trip": 1
+        }
+    },
+    {
+        "model": "tripapi.event",
+        "pk": 4,
+        "fields": {
+            "user": 2,
+            "title": "Picknick in the park",
+            "location": "Grant Park",
+            "date": "2024-08-01",
+            "time": "11:00:00",
+            "description": "I think we should grab a bite to eat and enjoy the weather",
+            "link": "https://www.chicagoparkdistrict.com/",
             "trip": 1
         }
     }
