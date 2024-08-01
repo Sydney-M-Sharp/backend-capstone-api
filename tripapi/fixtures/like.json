@@ -15,4 +15,13 @@
             "user": 3
         }
     }
+    ,
+    {
+        "model": "tripapi.like",
+        "pk": 3,
+        "fields": {
+            "event": 4,
+            "user": 1
+        }
+    }
 ]
