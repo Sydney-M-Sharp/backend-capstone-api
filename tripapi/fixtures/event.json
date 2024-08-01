@@ -46,7 +46,7 @@
         "pk": 4,
         "fields": {
             "user": 2,
-            "title": "Picknick in the park",
+            "title": "Picnic in the park",
             "location": "Grant Park",
             "date": "2024-08-01",
             "time": "11:00:00",
