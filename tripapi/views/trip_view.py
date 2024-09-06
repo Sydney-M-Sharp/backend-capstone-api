@@ -16,6 +16,14 @@ class TripView(ViewSet):
     
     def update(self, request, pk=None):
         """Handle PUT requests to update a Trip and manage its invitations"""
+        '''Postman test: 
+                {
+                "location": "New York",
+                "start_date": "2024-09-15",
+                "end_date": "2024-09-20",
+                "invited_users": [1, 2, 3]
+                }
+        '''
         try:
             trip = Trip.objects.get(pk=pk)
             trip.user = request.auth.user
@@ -84,31 +92,7 @@ class TripView(ViewSet):
         except Exception as e:
             return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
         
-    # def update(self, request, pk=None):
-    #     """Handle PUT requests to update an Trip"""
-    #     ''' {
-    #         "location": "Chicago",
-    #         "start_date": "2024-08-01",
-    #         "end_date": "2024-08-10",
-        
-    #         "invited_users": [
-    #                 1
-    #                 ]
-    #         }'''
-    #     trip = Trip.objects.get(pk=pk)
-    #     trip.user = request.auth.user
-    #     trip.location = request.data['location']
-    #     trip.start_date = request.data['start_date']
-    #     trip.end_date = request.data['end_date']
-    #     trip.save()
-
-    #     # Handle invites
-    #     invited_users = request.data.get('invited_users', [])
-    #     for user_id in invited_users:
-    #         Invite.objects.update(trip=trip, user_id=user_id)
-        
-    #     serializer = TripSerializer(trip, context={'request': request})
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
+    
         
     def destroy(self, request, pk=None):
         """Handle DELETE requests to delete a Trip"""
