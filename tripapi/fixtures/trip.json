@@ -13,7 +13,7 @@
         "model": "tripapi.trip",
         "pk": 2,
         "fields": {
-            "location": "New York",
+            "location": "California",
             "start_date": "2024-09-01",
             "end_date": "2024-09-05",
             "user": 2
