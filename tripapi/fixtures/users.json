@@ -71,4 +71,23 @@
             "user_permissions": []
         }
     }
+    ,
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$fHDURJBIASpx$trZS1MWc6YiNe5EYNBap+P+zMAwpNgNbUZH/b9bgvdw=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mark",
+            "first_name": "mark",
+            "last_name": "Long",
+            "email": "mark@brendalong.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-10-10T22:48:53.984Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
 ]
