@@ -1,0 +1,58 @@
+DB diagram ERD
+
+Table user {
+ID int pk
+first_name varchar
+last_name varchar
+email varchar
+pasword varchar
+}
+
+Table trip {
+  ID int pk
+  location varchar
+  start_date date
+  end_date date
+  user_id int
+}
+
+Table event {
+ID int pk
+title varchar
+created_by int
+location varchar
+date date
+time int
+discription varchar
+link varchar
+trip_id varchar
+}
+
+Table like {
+  ID int pk
+ event_id int
+ user_id int
+} 
+// drop likes if you cant get to MVP
+
+Table invite {
+  ID int pk
+  trip_id varchar
+  user_id int
+}
+
+
+
+Ref: "event"."trip_id" > "trip"."ID"
+
+Ref: "trip"."user_id" > "user"."ID"
+
+Ref: "event"."created_by" < "user"."ID"
+
+Ref: "like"."event_id" <>"event"."ID"
+
+Ref: "like"."user_id"  <> "user"."ID"
+
+Ref: "invite"."trip_id" <> "trip"."ID"
+
+Ref: "invite"."user_id" <> "user"."ID"
